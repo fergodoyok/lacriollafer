@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+ <!--- <link rel="stylesheet" href="bootstrap.min.css">    -->
+
+  
+   <link rel="stylesheet" href="bootstrap.css">   
+
+  <!--<link rel="stylesheet" href="style.css">-->
+
+  <!--    --> <SCript src="bootstrap.min.js"></SCript>
+  
+  <script src="https://kit.fontawesome.com/9ba46bf25f.js" crossorigin="anonymous"></script>
+</head>
+
+
+
+<body style="background-color: rgb(192, 192, 192); text-align: center;">
+    <header class="header">
+      <section class="container">
+        <div class="logo">
+          <h1><i class="fab fa-python"></i> La Criolla</h1>
+        </div>
+        <nav class="menu">
+            <a href="index.html">Pag principal</a>
+          <a href="platos.html">Platos</a>
+          <a href="Bebidas.html">Bebidas</a>
+          <a href="postres.html">Postres</a>
+          <a href="https://www.instagram.com//" target="_blank">Instagram</a>
+         
+        </nav><br>
+      </section>
+    </header>
+
+
+
+<div class="center">
+    <div class="text-center">
+    <form name="fvalida">
+        <DIV class="center"><h1  class="textoformulario" style="font-family: cursive;">Reservas "La Criolla"</h1> </DIV><br><br>
+        
+           <div class="textoformulario">
+                Nombre: 
+                <input type="text" name="nombre" size="30" maxlength="100" placeholder="example Fernando">
+           
+            <br><br>
+                Cantidad de Comensales: 
+                <input type="number" name="personas" size="30" minlength="" maxlength="2" placeholder="example 4 ">
+            <br><br>
+               
+               Dia a Reservar: 
+                    <select name=dia>
+                        <option value="Elegir">Elija el Día
+                        <option value="Lunes">Lunes
+                        <option value="Martes">Martes
+                        <option value="Miercoles">Miercoles
+                        <option value="Jueves">Jueves
+                        <option value="Viernes">Viernes
+                        <option value="Sabado">Sabado
+                        <option value="Domingo">Domingo
+                    </select>
+              <br>
+<br>
+               Horario:
+                
+                    <select name=hora>
+                        <option value="Seleccion">Seleccione el Horario
+                        <option value="Mañana">12:30hs a 15:30hs
+                        <option value="Noche1">20hs a 21:45hs
+                        <option value="Noche2">21:45hs a 23:30hs
+                    </select>
+          <br><br>
+                   
+
+                Telefono: 
+                <input type="tel" name="tel" size="30" minlength="8" maxlength="11" placeholder="example 43081111 ">
+<br><br>
+                Mail: 
+                <input type="email" name="mail" size="30" maxlength="100" placeholder="Si no tiene mail escriba 'No' ">
+<br><br>
+
+<label for="comentarios">Comentarios:</label> <textarea name="comentarios" rows="10" cols="30" placeholder="Example
+Somos dos parejas 3 niños y un bebe, vamos a comer pastas. Torta de cumpleaños"></textarea> <br><br>
+               
+            </div>
+          
+                <input type="button" value="Enviar" onclick="valida_envia()">
+      
+    </form>
+</div>
+</div>
+
+
+    <script>
+        //Validación de un formulario con Javascript
+        //Fuente: https://desarrolloweb.com/articulos/1767.php
+        function valida_envia() {
+            //valido el nombre
+            if (document.fvalida.nombre.value.length == 0) {
+                alert("Tiene que escribir su nombre")
+                document.fvalida.nombre.focus()
+                return 0;
+            }
+
+            //valido el telefono tiene que ser entero mayor que 0
+            personas = document.fvalida.personas.value
+            personas = validarEntero(personas)
+            document.fvalida.personas.value = personas
+            if (personas == "") {
+                alert("Tiene que introducir la cantidad de personas.")
+                document.fvalida.personas.focus()
+                return 0;
+            } else {
+                if (personas < 0 || personas >100) {
+                    alert("Debe ser mayor a 0 y menos de 100 personas.")
+                    document.fvalida.personas.focus()
+                    return 0;
+                }
+            }
+                        //valido el dia
+            if (document.fvalida.dia.selectedIndex == 0) {
+                alert("Debe seleccionar el dia.")
+                document.fvalida.dia.focus()
+                return 0;
+            }
+
+            //valido el horario
+            if (document.fvalida.hora.selectedIndex == 0) {
+                alert("Debe seleccionar el horario.")
+                document.fvalida.hora.focus()
+                return 0;
+            }
+            
+            //Valido el telefono
+            tel = document.fvalida.tel.value
+            tel = validarEntero(tel)
+            document.fvalida.tel.value = tel
+            if (tel == "") {
+                alert("Tiene que introducir un número de telefono.")
+                document.fvalida.tel.focus()
+                return 0;
+            } else {
+                if (tel < 0) {
+                    alert("Debe ser mayor a 0.")
+                    document.fvalida.tel.focus()
+                    return 0;
+                }
+            }
+
+
+
+
+
+
+            //el formulario se envia
+            alert("Muchas gracias por enviar el formulario");
+            document.fvalida.submit();
+        }
+        
+        function validarEntero(valor) {
+            //intento convertir a entero.
+            //si era un entero no le afecta, si no lo era lo intenta convertir
+            valor = parseInt(valor)
+
+            //Compruebo si es un valor numérico
+            if (isNaN(valor)) {
+                //entonces (no es numero) devuelvo el valor cadena vacia
+                return ""
+            } else {
+                //En caso contrario (Si era un número) devuelvo el valor
+                return valor
+            }
+        }
+    </script>
+</body>
+
+</html>
